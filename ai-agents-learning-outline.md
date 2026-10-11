@@ -151,20 +151,25 @@
    - Short-term: the conversation and context window
    - Long-term: stored facts, preferences, past interactions
    - Working memory: scratchpads and notes during a task
-2. Embeddings
+2. Durable state in the harness
+   - Where it lives: transcripts, memory files, memory tools, workspace files, databases
+   - What each store survives (compaction, a new session, a crash, a fresh machine)
+   - Where it hooks into the loop: session start, tool calls, end of turn, before compaction
+   - Who decides what to remember: the harness or the model
+3. Embeddings
    - What an embedding is (meaning as a list of numbers)
    - Similarity search and cosine similarity
    - Embedding models and choosing one
-3. Vector databases
+4. Vector databases
    - Chroma, pgvector, Pinecone, Qdrant
    - Storing, indexing, and querying
-4. Building a RAG pipeline
+5. Building a RAG pipeline
    - Loading documents
    - Chunking strategies (size, overlap, semantic chunking)
    - Retrieval and re-ranking
    - Injecting retrieved context into prompts
    - Hybrid search (keywords + embeddings)
-5. Context management
+6. Context management
    - Summarizing old conversation history
    - Deciding what to keep, compress, or drop
    - Agentic retrieval: letting the agent decide what to search for

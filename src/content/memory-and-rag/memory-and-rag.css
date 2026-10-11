@@ -1,0 +1,374 @@
+/* Topic 6: Memory and Retrieval. Every class is prefixed with mem-. Code blocks reuse Topic 3's api- styles. */
+
+.mem-h3 {
+  margin: 32px 0 10px;
+  font-family: var(--serif);
+  font-size: 1.3125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.mem-table td:first-child {
+  font-weight: 600;
+}
+
+.mem-demo-head {
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.mem-demo-head .speed {
+  flex-wrap: wrap;
+}
+
+.mem-demo-head .slider {
+  margin-left: 0;
+}
+
+/* Memory tiers */
+
+.mem-tiers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 720px) {
+  .mem-tiers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.mem-tier {
+  --tier: var(--core);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  border-top: 3px solid var(--tier);
+  background: color-mix(in srgb, var(--tier) 6%, var(--surface));
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.mem-tier.working {
+  --tier: var(--planning);
+}
+.mem-tier.long {
+  --tier: var(--memory);
+}
+
+.mem-tier strong {
+  font-size: 0.9375rem;
+}
+
+.mem-tier em {
+  display: block;
+  font-style: normal;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mem-tier q {
+  margin-top: auto;
+  padding-top: 4px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* What survives */
+
+.mem-event-note {
+  margin: 0 0 14px !important;
+}
+
+.mem-stores {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: row-in 0.35s var(--ease);
+}
+
+.mem-store {
+  --fate: var(--memory);
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) 4.5rem minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--fate);
+  background: color-mix(in srgb, var(--fate) 7%, var(--surface));
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 600px) {
+  .mem-store {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .mem-why {
+    grid-column: 1 / -1;
+  }
+}
+
+.mem-store.partial {
+  --fate: var(--planning);
+}
+.mem-store.lost {
+  --fate: #c2412d;
+}
+
+.mem-fate {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fate);
+}
+
+.mem-why {
+  color: var(--muted);
+}
+
+/* Similarity */
+
+.mem-sim {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .mem-sim {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .mem-sim-plot {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+}
+
+.mem-sim-plot {
+  width: 100%;
+  height: auto;
+}
+
+.mem-sim-ring {
+  fill: none;
+  stroke: var(--border);
+  stroke-dasharray: 3 4;
+}
+
+.mem-sim-doc {
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.mem-sim-dot {
+  fill: var(--border-strong);
+}
+
+.mem-sim-num {
+  font-size: 10px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+
+.hit .mem-sim-doc {
+  stroke: var(--memory);
+}
+.hit .mem-sim-dot {
+  fill: var(--memory);
+}
+.hit .mem-sim-num {
+  fill: var(--text);
+}
+
+.mem-sim-query {
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: all 0.3s var(--ease);
+}
+
+.mem-sim-qdot {
+  fill: var(--accent);
+}
+
+.mem-ranked {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mem-ranked li {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.mem-ranked li.hit {
+  background: color-mix(in srgb, var(--memory) 9%, var(--surface));
+  color: var(--text);
+}
+
+.mem-score {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Chunking */
+
+.mem-chunks {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mem-chunks li {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.mem-chunks li.hit {
+  box-shadow: inset 3px 0 0 var(--memory);
+  background: color-mix(in srgb, var(--memory) 8%, var(--surface));
+}
+
+.mem-chunk-id {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.mem-shared {
+  opacity: 0.45;
+}
+
+.mem-answer {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.mem-chunk-verdict {
+  margin: 0 0 12px !important;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.875rem !important;
+  line-height: 1.45 !important;
+}
+
+.mem-chunk-verdict.ok {
+  background: color-mix(in srgb, var(--memory) 9%, var(--surface));
+}
+
+.mem-chunk-verdict.bad {
+  background: color-mix(in srgb, #c2412d 8%, var(--surface));
+}
+
+/* RAG pipeline */
+
+.mem-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mem-pipe-row {
+  --row: var(--planning);
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.mem-pipe-row.query {
+  --row: var(--memory);
+}
+
+@media (max-width: 600px) {
+  .mem-pipe-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+}
+
+.mem-pipe-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--row);
+}
+
+.mem-pipe-row ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+.mem-pipe-row li {
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--row) 40%, var(--border));
+  background: color-mix(in srgb, var(--row) 7%, var(--surface));
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.mem-pipe-row li + li::before {
+  content: '→';
+  position: absolute;
+  left: -17px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mem-stores {
+    animation: none;
+  }
+  .mem-sim-query {
+    transition: none;
+  }
+}
