@@ -3,7 +3,7 @@ import type { Topic } from '../../types'
 
 export const frameworksAndProtocols: Topic = {
   id: 'frameworks-and-protocols',
-  number: 8,
+  number: 9,
   title: 'Frameworks, SDKs, and Protocols',
   group: 'advanced',
   summary: 'Use existing tools productively now that you understand what they abstract.',

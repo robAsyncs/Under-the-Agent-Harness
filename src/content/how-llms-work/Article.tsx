@@ -220,7 +220,7 @@ export function HowLlmsWorkArticle() {
           Choosing a size is an engineering decision. A good default is to prove the task works with a capable
           model first, measure it, then try smaller models and keep the cheapest one that still passes. Many
           production systems mix tiers, sending easy requests to a small model and hard ones to a large one
-          (Topic 9 covers measuring this).
+          (Topic 10 covers measuring this).
         </p>
         <p>
           The other axis is access. An <Term id="open-weight">open-weight</Term> model can be downloaded, run on

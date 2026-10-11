@@ -221,7 +221,7 @@ export function MemoryAndRagArticle() {
           </li>
           <li>
             <strong>End of each turn.</strong> Save the transcript, write a <Term id="checkpoint">checkpoint</Term>,
-            commit, update the progress file. A <Term id="hook">hook</Term> (Topic 8) can do this every time,
+            commit, update the progress file. A <Term id="hook">hook</Term> (Topic 9) can do this every time,
             whether the model remembers to or not.
           </li>
           <li>
@@ -253,7 +253,7 @@ export function MemoryAndRagArticle() {
         <p>
           Memory brings its own failure modes. Notes go stale (“the API is on v2” after v3 ships), and a wrong note
           is worse than none, because the agent trusts it in every future session. Text the agent read on a web page
-          can try to get itself saved, which turns a one-off prompt injection into a permanent one (Topic 10). And
+          can try to get itself saved, which turns a one-off prompt injection into a permanent one (Topic 11). And
           memory is user data. Keep it short and specific, date it or tie it to a source, let people see and delete
           it, and don’t save what can be looked up again.
         </p>
@@ -420,7 +420,7 @@ export function MemoryAndRagArticle() {
         <p>
           Finally, measure it. Write twenty or so real questions with the passages that answer them, and check how
           often those passages make the top results. Most RAG failures are retrieval failures, and you can’t see them
-          by reading the final answers alone. Topic 9 turns this into a proper evaluation.
+          by reading the final answers alone. Topic 10 turns this into a proper evaluation.
         </p>
       </ArticleSection>
 

@@ -184,7 +184,7 @@ export function ToolUseArticle() {
         </Figure>
         <p>
           Treat the arguments as untrusted input, because that is what they are: text produced by a model that may
-          have read a malicious web page a moment earlier (Topic 10). A tool should check its inputs, run with the
+          have read a malicious web page a moment earlier (Topic 11). A tool should check its inputs, run with the
           narrowest permissions it needs, and have a timeout. Never pass model output to <code>eval</code> or a shell.
           A calculator, for example, should parse the expression and allow only arithmetic:
         </p>

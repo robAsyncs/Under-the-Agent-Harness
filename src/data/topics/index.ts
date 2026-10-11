@@ -6,9 +6,10 @@ import { toolUse } from './04-tool-use'
 import { agentLoop } from './05-agent-loop'
 import { memoryAndRag } from './06-memory-and-rag'
 import { advancedArchitectures } from './07-advanced-architectures'
-import { frameworksAndProtocols } from './08-frameworks-and-protocols'
-import { evaluation } from './09-evaluation'
-import { safety } from './10-safety'
+import { multiAgent } from './08-multi-agent'
+import { frameworksAndProtocols } from './09-frameworks-and-protocols'
+import { evaluation } from './10-evaluation'
+import { safety } from './11-safety'
 import { finalProject } from './11-final-project'
 
 /** Display order. Each topic's write-up lives in its own file. */
@@ -20,6 +21,7 @@ export const TOPICS: Topic[] = [
   agentLoop,
   memoryAndRag,
   advancedArchitectures,
+  multiAgent,
   frameworksAndProtocols,
   evaluation,
   safety,

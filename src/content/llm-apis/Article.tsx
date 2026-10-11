@@ -176,7 +176,7 @@ export function LlmApisArticle() {
           <Term id="xml-tags">XML tags</Term> keep the parts of a prompt apart. Wrapping the material in{' '}
           <code>&lt;email&gt;…&lt;/email&gt;</code> tells the model where the data starts and stops, so a sentence
           inside the email is read as content, not as an instruction to follow. That separation also matters for
-          security, which Topic 10 returns to.
+          security, which Topic 11 returns to.
         </p>
         <Figure>
           <PromptCompare />
@@ -192,7 +192,7 @@ export function LlmApisArticle() {
         <p>
           Finally, prompt engineering is empirical. A change that fixes one input can quietly break another, so keep a
           small set of real test inputs, including the awkward ones, and rerun all of them after every edit. Ten
-          examples you check by eye catch more regressions than any amount of rewording based on a single try. Topic 9
+          examples you check by eye catch more regressions than any amount of rewording based on a single try. Topic 10
           turns this habit into proper evaluation.
         </p>
       </ArticleSection>

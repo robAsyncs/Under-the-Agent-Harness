@@ -2,7 +2,7 @@ import type { Topic } from '../../types'
 
 export const evaluation: Topic = {
   id: 'evaluation',
-  number: 9,
+  number: 10,
   title: 'Evaluation and Reliability',
   group: 'production',
   summary: 'Know whether your agent actually works, and make it better.',

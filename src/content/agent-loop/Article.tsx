@@ -266,8 +266,8 @@ export function AgentLoopArticle() {
         <p>
           These are not exclusive. A coding agent might write a plan, execute each step as a short ReAct loop, and
           reflect when the tests fail. Topic 7 places ReAct and plan-and-execute in the longer history of planning,
-          from classical search and planning graphs to hierarchical plans and planning with memory, and looks at the
-          larger architectures built from these pieces, such as an orchestrator handing subtasks to other agents.
+          from classical search and planning graphs to hierarchical plans and planning with memory. Topic 8 looks at
+          the larger systems built from these pieces, such as an orchestrator handing subtasks to other agents.
         </p>
       </ArticleSection>
 
@@ -308,7 +308,7 @@ export function AgentLoopArticle() {
         </Figure>
         <p>
           The logs are also how you find out where tokens go, which iteration a run went wrong in, and which tool
-          descriptions need work. They become the raw material for evaluation in Topic 9.
+          descriptions need work. They become the raw material for evaluation in Topic 10.
         </p>
       </ArticleSection>
 
@@ -342,7 +342,7 @@ export function AgentLoopArticle() {
           something it shouldn’t. Most of this is fixed with Topic 4’s advice: clear descriptions, strict schemas
           and error messages that say what a correct call looks like. Destructive mistakes need a harder line.
           Permission checks and <Term id="human-in-the-loop">human approval</Term> belong in code, because the model
-          can be wrong, or be manipulated by text it read along the way (Topic 10).
+          can be wrong, or be manipulated by text it read along the way (Topic 11).
         </p>
         <Callout label="Checkpoint: why does the harness, not the model, decide when to stop?">
           <p>

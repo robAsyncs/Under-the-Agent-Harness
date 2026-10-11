@@ -195,11 +195,7 @@
    - Plan-and-execute: a plan written up front, with dynamic replanning when things go wrong
    - Hierarchical planning: high-level plans refined into subtasks, the bridge to orchestrator-worker systems
    - Planning with memory: keeping plans and progress in a scratchpad, reusing past plans and skills
-3. Multi-agent systems
-   - Orchestrator-worker setups
-   - Specialist agents and handoffs
-   - Communication between agents
-   - When multiple agents help and when they just add complexity
+3. From one agent to many (introduces orchestrator-worker; covered in depth in Module 8)
 4. Long-running agents
    - Saving state and resuming
    - Checkpointing progress
@@ -209,11 +205,47 @@
    - Asking clarifying questions
    - Interrupting and redirecting agents
 
+**Milestone project:** A long-running agent that keeps its plan in a file, checkpoints after every step, resumes after a crash, and asks for approval before risky actions.
+
+---
+
+## Module 8: Multi-Agent Systems
+
+**Goal:** Split work across agents with their own contexts, and orchestrate them from the harness.
+
+1. Why use more than one agent
+   - Context isolation, parallelism and specialization
+   - The token cost, and when it is worth paying
+2. Architectures
+   - Orchestrator-worker
+   - Handoffs between specialist agents
+   - Pipelines of roles (MetaGPT, ChatDev)
+   - Debate and voting
+   - Blackboards and shared state
+3. Communication and shared state
+   - Writing complete briefs for workers
+   - Returning short, structured results; files for large outputs
+   - Shared stores and who owns what
+   - Agent-to-agent protocols (A2A) and how they differ from MCP
+4. Orchestration in the harness
+   - In code, as a workflow
+   - As a spawn_worker tool inside the loop
+   - As handoffs, with permissions enforced in code
+   - Caps, budgets, effort scaling and failed workers
+5. When it fails, and when not to
+   - Conflicting implicit decisions (Cognition's argument)
+   - Failure taxonomies for multi-agent systems
+   - Defaulting to one agent
+6. Evaluating and debugging
+   - Tracing a run as a tree of spans
+   - Judging end results with a rubric
+   - Human testing and whole-system prompt changes
+
 **Milestone project:** A research agent where an orchestrator splits a question into subtopics, sends worker agents to research each, and combines the findings into a report.
 
 ---
 
-## Module 8: Frameworks, SDKs, and Protocols
+## Module 9: Frameworks, SDKs, and Protocols
 
 **Goal:** Use existing tools productively now that you understand what they abstract.
 
@@ -240,7 +272,7 @@
 
 ---
 
-## Module 9: Evaluation and Reliability
+## Module 10: Evaluation and Reliability
 
 **Goal:** Know whether your agent actually works, and make it better.
 
@@ -268,7 +300,7 @@
 
 ---
 
-## Module 10: Safety and Security
+## Module 11: Safety and Security
 
 **Goal:** Build agents that don't cause harm or get exploited.
 
@@ -312,9 +344,10 @@ Build an end-to-end agent that combines everything: tool use, memory or RAG, a w
 | 5. The Agent Loop | 2 weeks |
 | 6. Memory and Retrieval | 2 weeks |
 | 7. Advanced Architectures | 2 weeks |
-| 8. Frameworks and Protocols | 1–2 weeks |
-| 9. Evaluation and Reliability | 1–2 weeks |
-| 10. Safety and Security | 1–2 weeks |
+| 8. Multi-Agent Systems | 1–2 weeks |
+| 9. Frameworks and Protocols | 1–2 weeks |
+| 10. Evaluation and Reliability | 1–2 weeks |
+| 11. Safety and Security | 1–2 weeks |
 | Capstone | 3–4 weeks |
 
 **Total:** roughly 4–6 months. The most important thing is building at every stage rather than just reading.

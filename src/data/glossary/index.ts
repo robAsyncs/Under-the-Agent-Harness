@@ -4,6 +4,7 @@ import { FRAMEWORKS_AND_PROTOCOLS_TERMS } from './frameworks-and-protocols'
 import { HOW_LLMS_WORK_TERMS } from './how-llms-work'
 import { LLM_APIS_TERMS } from './llm-apis'
 import { MEMORY_AND_RAG_TERMS } from './memory-and-rag'
+import { MULTI_AGENT_TERMS } from './multi-agent'
 import { TOOL_USE_TERMS } from './tool-use'
 import type { GlossaryEntry } from './types'
 
@@ -17,6 +18,7 @@ export const GLOSSARY = {
   ...TOOL_USE_TERMS,
   ...AGENT_LOOP_TERMS,
   ...MEMORY_AND_RAG_TERMS,
+  ...MULTI_AGENT_TERMS,
   ...FRAMEWORKS_AND_PROTOCOLS_TERMS,
 } satisfies Record<string, GlossaryEntry>
 

@@ -2,7 +2,7 @@ import type { Topic } from '../../types'
 
 export const safety: Topic = {
   id: 'safety',
-  number: 10,
+  number: 11,
   title: 'Safety and Security',
   group: 'production',
   summary: 'Build agents that don\'t cause harm or get exploited.',
