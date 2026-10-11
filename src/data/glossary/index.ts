@@ -1,3 +1,4 @@
+import { ADVANCED_ARCHITECTURES_TERMS } from './advanced-architectures'
 import { AGENT_LOOP_TERMS } from './agent-loop'
 import { CORE_TERMS } from './core'
 import { FRAMEWORKS_AND_PROTOCOLS_TERMS } from './frameworks-and-protocols'
@@ -18,6 +19,7 @@ export const GLOSSARY = {
   ...TOOL_USE_TERMS,
   ...AGENT_LOOP_TERMS,
   ...MEMORY_AND_RAG_TERMS,
+  ...ADVANCED_ARCHITECTURES_TERMS,
   ...MULTI_AGENT_TERMS,
   ...FRAMEWORKS_AND_PROTOCOLS_TERMS,
 } satisfies Record<string, GlossaryEntry>

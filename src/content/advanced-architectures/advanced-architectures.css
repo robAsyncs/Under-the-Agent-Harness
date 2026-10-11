@@ -1,0 +1,346 @@
+/* Topic 7: Advanced Agent Architectures. Every class is prefixed with arc-. Tabs and traces reuse Topic 5's agl- styles. */
+
+.arc-h3 {
+  margin: 32px 0 10px;
+  font-family: var(--serif);
+  font-size: 1.3125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.arc-goal {
+  max-width: 100%;
+  margin-bottom: 16px;
+}
+
+/* Workflow patterns */
+
+.arc-flow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  animation: row-in 0.35s var(--ease);
+}
+
+.arc-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 0;
+  min-width: 96px;
+}
+
+.arc-box {
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border-top: 3px solid var(--core);
+  background: color-mix(in srgb, var(--core) 7%, var(--surface));
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.arc-box.first {
+  border-top-color: var(--planning);
+  background: color-mix(in srgb, var(--planning) 7%, var(--surface));
+}
+
+.arc-arrow {
+  flex: none;
+  color: var(--muted);
+}
+
+.arc-loop {
+  margin: 8px 0 0 !important;
+  font-size: 0.8125rem !important;
+  color: var(--accent);
+  text-align: right;
+}
+
+.arc-how {
+  margin: 14px 0 !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.55 !important;
+}
+
+/* Search grid */
+
+.arc-grid {
+  display: grid;
+  gap: 3px;
+  max-width: 560px;
+  margin: 0 auto 16px;
+}
+
+.arc-cell {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--surface-2);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  transition: background-color 0.2s var(--ease);
+}
+
+.arc-cell.wall {
+  background: var(--ink);
+}
+
+.arc-cell.seen {
+  background: color-mix(in srgb, var(--core) 35%, var(--surface));
+}
+
+.arc-cell.start,
+.arc-cell.goal {
+  background: var(--accent);
+  color: var(--on-ink);
+}
+
+/* Planning approaches table */
+
+.arc-table td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Hierarchical plan */
+
+.arc-plan {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 640px) {
+  .arc-plan {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.arc-tree,
+.arc-file {
+  min-height: 300px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.arc-tree ol,
+.arc-tree ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.arc-tree > ol > li {
+  margin-top: 10px;
+}
+
+.arc-tree ul {
+  margin: 6px 0 0 6px;
+  padding-left: 12px;
+  border-left: 1.5px solid var(--border-strong);
+}
+
+.arc-node {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  animation: row-in 0.35s var(--ease);
+}
+
+.arc-node strong {
+  font-weight: 600;
+}
+
+.arc-tree ul .arc-node {
+  display: grid;
+  grid-template-columns: 1.2em minmax(0, 1fr);
+  padding: 3px 0;
+}
+
+.arc-tree ul .arc-node::before {
+  content: '○';
+  grid-row: span 2;
+  color: var(--muted);
+}
+
+.arc-tree ul .arc-node > * {
+  grid-column: 2;
+}
+
+.arc-tree ul .arc-done::before {
+  content: '✓';
+  color: var(--memory);
+}
+
+.arc-tree ul .arc-failed::before {
+  content: '✕';
+  color: #c2412d;
+}
+
+.arc-tree ul .arc-dropped::before {
+  content: '–';
+}
+
+.arc-cell.path {
+  background: color-mix(in srgb, var(--accent) 55%, var(--surface));
+}
+
+.arc-node em {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.arc-done > strong,
+.arc-done > span {
+  color: var(--memory);
+}
+
+.arc-failed > span {
+  color: #c2412d;
+}
+
+.arc-dropped > span {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.arc-file pre {
+  margin: 6px 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.arc-caption {
+  min-height: 3em;
+  margin: 0 0 12px !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.5 !important;
+}
+
+/* Approval gate */
+
+.arc-calls {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.arc-call {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  animation: row-in 0.35s var(--ease);
+}
+
+.arc-call p {
+  margin: 4px 0 8px !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.45 !important;
+}
+
+.arc-call-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.arc-call-head code {
+  background: none !important;
+  padding: 0 !important;
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+
+.arc-rule {
+  flex: none;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.arc-rule-allow {
+  color: var(--memory);
+  background: var(--memory-bg);
+}
+.arc-rule-ask {
+  color: var(--planning);
+  background: var(--planning-bg);
+}
+.arc-rule-deny {
+  color: #c2412d;
+  background: color-mix(in srgb, #c2412d 12%, var(--surface));
+}
+
+.arc-ask {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.arc-ask input {
+  flex: 1 1 200px;
+  padding: 7px 12px;
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+}
+
+.arc-ask input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.arc-result {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border-left: 3px solid var(--memory);
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.arc-result.error {
+  border-left-color: #c2412d;
+}
+
+.arc-after {
+  margin: 8px 0 0 !important;
+}
+
+.pill:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc-flow,
+  .arc-node,
+  .arc-call {
+    animation: none;
+  }
+  .arc-cell {
+    transition: none;
+  }
+}
