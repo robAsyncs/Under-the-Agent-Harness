@@ -26,3 +26,15 @@ export const GLOSSARY = {
 
 export type GlossaryId = keyof typeof GLOSSARY
 
+/** Terms each topic introduces, by topic id. Used by topic search. */
+export const TERMS_BY_TOPIC: Record<string, Record<string, GlossaryEntry>> = {
+  'language-to-agents': CORE_TERMS,
+  'how-llms-work': HOW_LLMS_WORK_TERMS,
+  'llm-apis': LLM_APIS_TERMS,
+  'tool-use': TOOL_USE_TERMS,
+  'agent-loop': AGENT_LOOP_TERMS,
+  'memory-and-rag': MEMORY_AND_RAG_TERMS,
+  'advanced-architectures': ADVANCED_ARCHITECTURES_TERMS,
+  'multi-agent': MULTI_AGENT_TERMS,
+  'frameworks-and-protocols': FRAMEWORKS_AND_PROTOCOLS_TERMS,
+}
