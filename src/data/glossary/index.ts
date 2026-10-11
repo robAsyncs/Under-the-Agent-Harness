@@ -1,5 +1,6 @@
 import { AGENT_LOOP_TERMS } from './agent-loop'
 import { CORE_TERMS } from './core'
+import { FRAMEWORKS_AND_PROTOCOLS_TERMS } from './frameworks-and-protocols'
 import { HOW_LLMS_WORK_TERMS } from './how-llms-work'
 import { LLM_APIS_TERMS } from './llm-apis'
 import { MEMORY_AND_RAG_TERMS } from './memory-and-rag'
@@ -16,6 +17,8 @@ export const GLOSSARY = {
   ...TOOL_USE_TERMS,
   ...AGENT_LOOP_TERMS,
   ...MEMORY_AND_RAG_TERMS,
+  ...FRAMEWORKS_AND_PROTOCOLS_TERMS,
 } satisfies Record<string, GlossaryEntry>
 
 export type GlossaryId = keyof typeof GLOSSARY
+

@@ -1,0 +1,81 @@
+/* Topic 9: Frameworks, SDKs, and Protocols. Every class is prefixed with fp-. Reuses agl-, arc- and api- styles. */
+
+.fp-proscons {
+  margin-top: 14px;
+}
+
+/* MCP message stepper */
+
+.fp-lanes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.fp-lane {
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--muted);
+  transition:
+    background-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.fp-lane.from {
+  color: var(--on-ink);
+  background: var(--ink);
+}
+
+.fp-lane.to {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+}
+
+.fp-dir {
+  margin: 0 0 8px !important;
+  font-size: 0.9375rem !important;
+}
+
+.fp-caption {
+  margin-top: 12px !important;
+}
+
+/* Hook demo */
+
+.fp-hook {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  animation: row-in 0.35s var(--ease);
+}
+
+@media (max-width: 640px) {
+  .fp-hook {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.fp-hook .api-pane-label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.speed button code {
+  background: none;
+  padding: 0;
+  font-size: 0.8125rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fp-hook {
+    animation: none;
+  }
+  .fp-lane {
+    transition: none;
+  }
+}
