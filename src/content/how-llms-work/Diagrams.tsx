@@ -1,48 +1,28 @@
-const STAGES = [
-  {
-    name: 'Pretraining',
-    data: 'Trillions of tokens of web pages, books and code',
-    objective: 'Predict the next token',
-    result: 'Base model: completes documents',
-    share: 0.9,
-  },
-  {
-    name: 'Supervised fine-tuning',
-    data: 'Thousands to hundreds of thousands of written example conversations',
-    objective: 'Imitate the ideal response',
-    result: 'Follows instructions in a chat format',
-    share: 0.05,
-  },
-  {
-    name: 'Preference tuning',
-    data: 'Pairs of responses ranked by people or by an AI using written principles',
-    objective: 'Prefer the better response (RLHF, DPO, RLAIF)',
-    result: 'Chat model: helpful, honest, harmless style',
-    share: 0.05,
-  },
-]
-
-/** The three training stages behind a chat model. */
-export function TrainingPipeline() {
+/** What a model can know: training data up to the cutoff, then a gap that only the context can fill. */
+export function CutoffTimeline() {
   return (
-    <div className="llm-pipeline">
-      {STAGES.map((s, i) => (
-        <div key={s.name} className="llm-stage">
-          <span className="llm-stage-num">{i + 1}</span>
-          <strong>{s.name}</strong>
-          <dl>
-            <dt>Data</dt>
-            <dd>{s.data}</dd>
-            <dt>Objective</dt>
-            <dd>{s.objective}</dd>
-            <dt>Result</dt>
-            <dd>{s.result}</dd>
-          </dl>
-          <div className="llm-share" aria-label={i === 0 ? 'Most of the compute' : 'A small share of the compute'}>
-            <span style={{ width: `${s.share * 100}%` }} />
-          </div>
+    <div className="llm-cutoff" role="img" aria-label="Timeline: training data up to the cutoff, then release months later, then today. Everything after the cutoff is only knowable if it is in the context.">
+      <div className="llm-cutoff-track">
+        <div className="llm-cutoff-known">
+          <span>Learned in training</span>
+          <small>Thinner near the cutoff: less had been written about recent events yet</small>
         </div>
-      ))}
+        <div className="llm-cutoff-gap">
+          <span>Only knowable if it’s in the context</span>
+          <small>New events, today’s date, the latest library versions</small>
+        </div>
+      </div>
+      <ol className="llm-cutoff-marks">
+        <li className="above" style={{ left: '58%' }}>
+          <strong>Cutoff</strong> ↓
+        </li>
+        <li className="above end" style={{ left: '100%' }}>
+          <strong>Today</strong> ↓
+        </li>
+        <li style={{ left: '74%' }}>
+          ↑ <strong>Release</strong>, months later
+        </li>
+      </ol>
     </div>
   )
 }

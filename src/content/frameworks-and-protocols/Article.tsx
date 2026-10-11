@@ -5,11 +5,13 @@ import '../agent-loop/agent-loop.css'
 import '../how-llms-work/how-llms-work.css'
 import { Code } from '../llm-apis/Code'
 import '../llm-apis/llm-apis.css'
-import { FrameworkTable } from './Diagrams'
+import { CodingCycle, FrameworkTable, OsworldChart, SandboxLayers } from './Diagrams'
 import { FrameworkTabs } from './FrameworkTabs'
 import './frameworks-and-protocols.css'
+import { HookLifecycle } from './HookLifecycle'
 import { HooksDemo } from './HooksDemo'
 import { McpDemo } from './McpDemo'
+import { PageViewsDemo } from './PageViewsDemo'
 
 const MCP_SERVER = `
 from pathlib import Path
@@ -277,7 +279,13 @@ export function FrameworksAndProtocolsArticle() {
         <p>
           <strong>How it works.</strong> Each turn follows the same pattern: gather context (search and read files),
           take action (edit files, run commands) and verify the result (run the tests, read the output), repeating
-          until the task is done. The tools are deliberately few and general: read, write and edit files; find
+          until the task is done.
+        </p>
+        <Figure caption="One task in Claude Code, with the built-in tools each stage mostly uses.">
+          <CodingCycle />
+        </Figure>
+        <p>
+          The tools are deliberately few and general: read, write and edit files; find
           files by name and search their contents; run shell commands; fetch and search the web; keep a to-do list;
           and start <strong>subagents</strong>, which explore or work in their own context and return a summary, the
           orchestrator-worker pattern from Topic 8. Research on SWE-agent (Yang et al., 2024) showed why this
@@ -302,7 +310,14 @@ export function FrameworksAndProtocolsArticle() {
           after one (<code>PostToolUse</code>), when you submit a prompt (<code>UserPromptSubmit</code>), when Claude
           tries to finish (<code>Stop</code>), when a session starts or ends, before compaction, and more. The hook
           receives JSON describing the event on stdin, and what it prints back can allow the action, block it with a
-          reason Claude reads, ask you to confirm, or add context. It is Topic 7’s approval gate, moved out of the
+          reason Claude reads, ask you to confirm, or add context. Not every event can do every one of these; click
+          an event to see where it fires and what it can do:
+        </p>
+        <Figure>
+          <HookLifecycle />
+        </Figure>
+        <p>
+          <code>PreToolUse</code> is the one you’ll reach for first. It is Topic 7’s approval gate, moved out of the
           agent’s code and into configuration:
         </p>
         <Figure>
@@ -353,6 +368,9 @@ export function FrameworksAndProtocolsArticle() {
           cloud sandbox built on microVMs such as Firecracker. The rule from Topic 5 holds at every level. Don’t rely
           on the model to stay within bounds; make the bounds something it can’t cross.
         </p>
+        <Figure caption="Layers around one command, from the outside in. Each wall still holds when the layer inside it fails.">
+          <SandboxLayers />
+        </Figure>
       </ArticleSection>
 
       <ArticleSection n={4} title="Computer and browser use">
@@ -373,14 +391,22 @@ export function FrameworksAndProtocolsArticle() {
           server use it. Screenshots remain the fallback for canvas apps, images and anything the tree describes
           badly.
         </p>
+        <Figure>
+          <PageViewsDemo />
+        </Figure>
         <p>
           <strong>Capabilities and limits.</strong> Progress has been fast. When the OSWorld benchmark of 369 real
           desktop tasks was published in 2024, people completed 72% of them and the best model 12%. Claude’s first
-          computer use release, in October 2024, scored 14.9%, and by late 2025 frontier models were above 60%. But
-          computer use is still slower and more expensive than any API, since every step is a screenshot and a model
-          call. It is brittle when layouts change, pop-ups appear or pages load slowly. And it is exposed to prompt
-          injection from everything on screen: an agent reading web pages can be steered by text written for it on
-          one of them. Practical use today means a dedicated, isolated machine, no access to accounts or data the task
+          computer use release, in October 2024, scored 14.9%, and by late 2025 frontier models were above 60%.
+        </p>
+        <Figure caption="OSWorld task success. The dashed line marks people.">
+          <OsworldChart />
+        </Figure>
+        <p>
+          But computer use is still slower and more expensive than any API, since every step is a screenshot and a
+          model call. It is brittle when layouts change, pop-ups appear or pages load slowly. And it is exposed to
+          prompt injection from everything on screen: an agent reading web pages can be steered by text written for it
+          on one of them. Practical use today means a dedicated, isolated machine, no access to accounts or data the task
           doesn’t need, a person confirming anything consequential like purchases or sending messages, and an API
           whenever one exists.
         </p>

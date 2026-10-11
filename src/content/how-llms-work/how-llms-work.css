@@ -444,3 +444,227 @@
     animation: none;
   }
 }
+
+/* Training stepper */
+
+.llm-pipeline button.llm-stage {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0.55;
+  transition:
+    opacity 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.llm-pipeline button.llm-stage.done {
+  opacity: 1;
+}
+
+.llm-pipeline button.llm-stage.on {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.demo .llm-pipeline {
+  margin: 16px 0;
+}
+
+.llm-after {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  animation: llm-in 0.35s var(--ease);
+}
+
+.llm-after p {
+  margin: 0 !important;
+  font-size: 0.9375rem !important;
+  line-height: 1.5 !important;
+}
+
+.llm-after .llm-role {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.llm-after-answer {
+  font-family: var(--serif);
+  font-size: 1.0625rem !important;
+}
+
+.llm-step-nav {
+  margin-top: 14px;
+}
+
+.llm-step-nav .pill:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Knowledge cutoff */
+
+.llm-cutoff {
+  position: relative;
+  padding: 34px 0 36px;
+}
+
+.llm-cutoff-track {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+
+.llm-cutoff-track > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+}
+
+.llm-cutoff-track small {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.llm-cutoff-known {
+  flex: 58;
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+}
+
+.llm-cutoff-gap {
+  flex: 42;
+  border-left: 2px solid var(--accent);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--surface-2) 0 6px,
+    var(--surface) 6px 12px
+  );
+}
+
+.llm-cutoff-marks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.llm-cutoff-marks li {
+  position: absolute;
+  bottom: 8px;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.llm-cutoff-marks li.above {
+  top: 6px;
+  bottom: auto;
+}
+
+.llm-cutoff-marks li.end {
+  transform: translateX(-100%);
+}
+
+.llm-cutoff-marks strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* GSM-Symbolic and chain-of-thought */
+
+.llm-problem {
+  margin: 16px 0 !important;
+  font-family: var(--serif);
+  font-size: 1.1875rem !important;
+  line-height: 1.55 !important;
+}
+
+.llm-changed {
+  padding: 1px 3px;
+  border-radius: 4px;
+  color: inherit;
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.llm-changed.noop {
+  background: color-mix(in srgb, #c2412d 18%, transparent);
+}
+
+.llm-gsm {
+  margin: 0;
+}
+
+.llm-gsm dt {
+  margin-bottom: 2px;
+}
+
+.llm-gsm dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.llm-wrong strong {
+  color: #c2412d;
+}
+
+.llm-cot {
+  animation: llm-in 0.35s var(--ease);
+}
+
+.llm-cot-steps {
+  margin: 0 0 12px;
+  padding-left: 1.4em;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.llm-cot-answer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 !important;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  font-family: var(--serif);
+  font-size: 1.25rem !important;
+}
+
+.llm-cot-mark {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.llm-cot-answer.wrong .llm-cot-mark {
+  color: #c2412d;
+}
+
+.llm-cot-answer.right .llm-cot-mark {
+  color: var(--accent);
+}
+
+@media (max-width: 480px) {
+  .llm-cutoff-track > div {
+    padding: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .llm-after,
+  .llm-cot {
+    animation: none;
+  }
+  .llm-pipeline button.llm-stage {
+    transition: none;
+  }
+}

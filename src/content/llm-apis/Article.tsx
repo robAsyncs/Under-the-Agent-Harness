@@ -1,6 +1,8 @@
 import { ArticleSection, Callout, Figure } from '../../components/article/Article'
 import { Term } from '../../components/article/Term'
+import { ApiAnatomy } from './ApiAnatomy'
 import { Code } from './Code'
+import { CostCalculator } from './CostCalculator'
 import { BackoffTimeline, CacheDiagram, RoundTrip } from './Diagrams'
 import './llm-apis.css'
 import { PromptCompare } from './PromptCompare'
@@ -124,6 +126,9 @@ export function LlmApisArticle() {
           <Term id="stop-reason">stop_reason</Term> says why generation ended, and <code>usage</code> reports the
           tokens you are billed for.
         </p>
+        <Figure caption="Hover over or select a field to see what it does.">
+          <ApiAnatomy />
+        </Figure>
         <p>
           Topic 1 showed that the model is <Term id="stateless">stateless</Term>. In code, that means the conversation
           is a list you own. You append the user’s message, send the whole list, and append the reply:
@@ -248,6 +253,10 @@ export function LlmApisArticle() {
             twenty turns later might send 30,000 input tokens per request, and input becomes most of the bill.
           </p>
         </Callout>
+        <p>Run the same numbers over a whole chat, and try the two discounts this section covers next:</p>
+        <Figure caption="Each bar is one request. Resent history makes every request dearer than the last.">
+          <CostCalculator />
+        </Figure>
         <p>
           Two more levers are worth knowing before the big one. Not every request needs an instant answer: a
           batch API accepts thousands of requests at once and returns results asynchronously, at half the normal

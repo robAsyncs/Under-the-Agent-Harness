@@ -6,6 +6,7 @@ import '../llm-apis/llm-apis.css'
 import './agent-loop.css'
 import { AutonomySpectrum } from './Diagrams'
 import { FailureDemo } from './FailureDemo'
+import { GrowthDemo } from './GrowthDemo'
 import { LoopRunDemo } from './LoopRunDemo'
 import { PatternTabs } from './PatternTabs'
 
@@ -298,6 +299,9 @@ export function AgentLoopArticle() {
           smallest set of high-signal tokens that lets the model do the next step. Topic 6 covers the memory side of
           it.
         </p>
+        <Figure caption="Each bar is one model call. The bars grow in a straight line, so their total grows with the square of the run’s length.">
+          <GrowthDemo />
+        </Figure>
         <p>
           <strong>Log every step.</strong> An agent’s behavior is only visible in its{' '}
           <Term id="trajectory">trajectory</Term>, the sequence of calls and results. Writing one JSON line per event

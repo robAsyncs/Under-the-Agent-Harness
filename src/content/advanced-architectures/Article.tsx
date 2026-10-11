@@ -6,9 +6,12 @@ import '../llm-apis/llm-apis.css'
 import '../how-llms-work/how-llms-work.css'
 import './advanced-architectures.css'
 import { ApprovalDemo } from './ApprovalDemo'
-import { PlanningTable } from './Diagrams'
+import { CrashDemo } from './CrashDemo'
+import { MetrTrend, PlanningGraph, PlanningTable } from './Diagrams'
 import { PlanDemo } from './PlanDemo'
 import { SearchDemo } from './SearchDemo'
+import { SessionRelay } from './SessionRelay'
+import { TotDemo } from './TotDemo'
 import { WorkflowTabs } from './WorkflowTabs'
 
 const STRIPS = `
@@ -171,6 +174,9 @@ export function AdvancedArchitecturesArticle() {
           (Zhou et al., 2023) uses the same kind of tree search over real actions, with environment feedback and
           self-reflection guiding which branches to try.
         </p>
+        <Figure>
+          <TotDemo />
+        </Figure>
         <p>
           The catch is cost. Every node in the tree is at least one model call, and a step-by-step agent may need
           dozens of nodes per step. These methods pay off on problems where an early wrong step is fatal and can be
@@ -188,6 +194,9 @@ export function AdvancedArchitecturesArticle() {
           faster than the planners of its day, and its graph later became a source of heuristics for search-based
           planners.
         </p>
+        <Figure caption="The textbook cake example. Both goal facts appear after one step, but only eating could produce “eaten”, and eating removes the cake, so they are mutex. One layer later, baking makes them compatible, and the plan is eat, then bake.">
+          <PlanningGraph />
+        </Figure>
         <p>
           LLM agents don’t build planning graphs. The lesson that carries over is the problem Graphplan was solving:
           explicit search over every possibility is exponential, so practical planners need ways to rule most of it
@@ -284,6 +293,9 @@ export function AdvancedArchitecturesArticle() {
           meets: the context fills up, processes crash, rate limits bite, and someone wants to see progress or stop
           the run halfway.
         </p>
+        <Figure caption="A doubling every seven months, drawn relative to 2019 on a log scale. Six years of it is about ten doublings, a thousandfold increase. This is the trend line, not individual models.">
+          <MetrTrend />
+        </Figure>
         <p>
           <strong>Save state, and resume from it.</strong> A long-running agent should be able to stop at any point
           and continue later. That means keeping a <Term id="checkpoint">checkpoint</Term> outside the process: the
@@ -300,6 +312,9 @@ export function AdvancedArchitecturesArticle() {
           the same email twice is not). And the checkpoint should store what you need to continue, not the full
           message history, which is large and soon stale.
         </p>
+        <Figure>
+          <CrashDemo />
+        </Figure>
         <p>
           <strong>Work across context windows.</strong> Even without crashes, a task that runs for hours outlasts any
           context window. Anthropic’s guide to harnesses for long-running coding agents describes a pattern that
@@ -309,6 +324,9 @@ export function AdvancedArchitecturesArticle() {
           for whoever comes next. The plan file from Section 2 becomes the handover between sessions, and git becomes
           the checkpoint.
         </p>
+        <Figure>
+          <SessionRelay />
+        </Figure>
         <p>
           <strong>Watch it.</strong> The longer the run, the more it matters to see what it is doing. Stream progress
           events to a log (Topic 5), report the current step somewhere a person can check, and set budgets on time

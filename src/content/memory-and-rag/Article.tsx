@@ -6,7 +6,10 @@ import '../llm-apis/llm-apis.css'
 import '../how-llms-work/how-llms-work.css'
 import './memory-and-rag.css'
 import { ChunkDemo } from './ChunkDemo'
-import { MemoryTiers, RagPipeline, StateTable } from './Diagrams'
+import { ContextBarDemo } from './ContextBarDemo'
+import { HookLoop, MemoryTiers, RagPipeline, StateTable } from './Diagrams'
+import { HybridDemo } from './HybridDemo'
+import { RetrievalCompare } from './RetrievalCompare'
 import { SimilarityDemo } from './SimilarityDemo'
 import { SurvivalDemo } from './SurvivalDemo'
 
@@ -210,7 +213,10 @@ export function MemoryAndRagArticle() {
 
         <h3 className="mem-h3">Where it hooks into the loop</h3>
         <p>The agent loop from Topic 5 has four natural places to read and write durable state:</p>
-        <ul className="agl-stops">
+        <Figure caption="The loop from Topic 5. The numbered steps are where durable state is read or written.">
+          <HookLoop />
+        </Figure>
+        <ol className="agl-stops">
           <li>
             <strong>Session start.</strong> Build the system prompt from memory files, the task list and a summary of
             earlier work, so the first call already knows what matters.
@@ -228,7 +234,7 @@ export function MemoryAndRagArticle() {
             <strong>Before compaction.</strong> Whatever is not in the summary or in a file is gone afterwards, so this
             is the last chance to save it.
           </li>
-        </ul>
+        </ol>
 
         <h3 className="mem-h3">Who decides what to remember</h3>
         <p>
@@ -417,6 +423,10 @@ export function MemoryAndRagArticle() {
         <Figure>
           <Code title="hybrid search" lang="python" code={RRF} />
         </Figure>
+        <p>Here are both rankings for a query with an exact error code in it, and what the fusion makes of them:</p>
+        <Figure>
+          <HybridDemo />
+        </Figure>
         <p>
           Finally, measure it. Write twenty or so real questions with the passages that answer them, and check how
           often those passages make the top results. Most RAG failures are retrieval failures, and you can’t see them
@@ -447,6 +457,10 @@ export function MemoryAndRagArticle() {
         <Figure>
           <Code title="compaction" lang="python" code={COMPACT} />
         </Figure>
+        <p>Run it on a context that is nearly full and see what each part becomes:</p>
+        <Figure>
+          <ContextBarDemo />
+        </Figure>
         <p>
           Compaction loses detail every time it runs, which is why it works best alongside the durable state from
           Section 2. The plan, the progress notes and the saved facts live in files, so the summary only has to
@@ -463,6 +477,9 @@ export function MemoryAndRagArticle() {
           instead of relying on a pre-built index, and loading files only when they are needed. Instead of guessing
           up front what belongs in the context, the agent fetches it just in time.
         </p>
+        <Figure>
+          <RetrievalCompare />
+        </Figure>
         <Callout label="Checkpoint: where should an agent’s memory live?">
           <p>
             Not in the model, which keeps nothing, and not only in the context window, which is small, gets compacted

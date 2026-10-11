@@ -1,9 +1,12 @@
 import { ArticleSection, Callout, Figure } from '../../components/article/Article'
 import { Term } from '../../components/article/Term'
 import { ContextWindowDemo } from './ContextWindowDemo'
-import { LandscapeTable, TrainingPipeline } from './Diagrams'
+import { CotDemo } from './CotDemo'
+import { CutoffTimeline, LandscapeTable } from './Diagrams'
+import { GsmDemo } from './GsmDemo'
 import { SamplerDemo } from './SamplerDemo'
 import { TokenizerDemo } from './TokenizerDemo'
+import { TrainingStepper } from './TrainingStepper'
 import './how-llms-work.css'
 
 export function HowLlmsWorkArticle() {
@@ -74,20 +77,8 @@ export function HowLlmsWorkArticle() {
           for each position is simply the next token in the text. This stage uses the vast majority of the
           compute and is where the model's knowledge and general skills come from. The result is a{' '}
           <Term id="base-model">base model</Term>: an extremely good document completer with no notion of being
-          an assistant.
+          an assistant. Ask it a question and it may well continue with more questions, as if writing a quiz.
         </p>
-        <Callout label="Example: the same prompt, two models">
-          <p>
-            Prompt: <code>What is the capital of France?</code>
-          </p>
-          <p>
-            <strong>Base model:</strong> “What is the capital of Germany? What is the capital of Italy? Test your
-            knowledge with these 20 geography questions…” It continues the most likely kind of document: a quiz.
-          </p>
-          <p>
-            <strong>Chat model:</strong> “The capital of France is Paris.”
-          </p>
-        </Callout>
         <p>
           <Term id="fine-tuning">Fine-tuning</Term> means continuing to train on a smaller, targeted dataset.{' '}
           <Term id="sft">Supervised fine-tuning</Term> (also called instruction tuning) uses written examples of
@@ -102,8 +93,8 @@ export function HowLlmsWorkArticle() {
           and Anthropic's Constitutional AI replaces many of the human comparisons with AI feedback guided by a
           written set of principles.
         </p>
-        <Figure caption="Compute bars are illustrative: pretraining dominates the cost.">
-          <TrainingPipeline />
+        <Figure caption="Step through the stages to see what the same prompt gets after each one. Compute bars are illustrative: pretraining dominates the cost.">
+          <TrainingStepper />
         </Figure>
         <p>
           The “conversation” a chat model sees is still a single token sequence. A{' '}
@@ -190,12 +181,18 @@ export function HowLlmsWorkArticle() {
           version of a library unless that information is put in the context, and it is often unsure of its own
           cutoff.
         </p>
+        <Figure caption="A model keeps being used long after its cutoff, so the gap only grows.">
+          <CutoffTimeline />
+        </Figure>
         <p>
           Reasoning is real but brittle. Apple's GSM-Symbolic study (Mirzadeh et al., 2024) took grade-school
           math problems and changed only names and numbers, and accuracy dropped; adding one irrelevant clause
           caused much larger drops. Models do best on problems that resemble their training data, and worst on
           long, exact procedures such as multiplying large numbers digit by digit.
         </p>
+        <Figure caption="Switch on each change: none of them alters the reasoning needed, only how familiar the problem looks.">
+          <GsmDemo />
+        </Figure>
         <p>
           One reliable improvement is letting the model think on paper. With{' '}
           <Term id="chain-of-thought">chain-of-thought</Term> prompting (Wei et al., 2022), the model writes out
@@ -206,6 +203,9 @@ export function HowLlmsWorkArticle() {
           The trade-off is cost and latency, since thinking tokens are billed and take up context, and the benefit
           is largest on multi-step problems rather than simple lookups.
         </p>
+        <Figure>
+          <CotDemo />
+        </Figure>
       </ArticleSection>
 
       <ArticleSection n={5} title="The model landscape">

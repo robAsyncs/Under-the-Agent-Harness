@@ -178,6 +178,12 @@
 
 /* Traces (patterns and failure modes) */
 
+.agl-growth-head {
+  justify-content: space-between;
+  gap: 10px 24px;
+  margin-bottom: 16px;
+}
+
 .agl-tabs-head {
   justify-content: space-between;
   margin-bottom: 16px;
