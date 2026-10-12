@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import { HarnessDiagram } from '../components/HarnessDiagram'
-import { TopicList } from '../components/TopicList'
-import { GROUPS, topicsIn } from '../data/topics'
+import { Evolution } from '../components/Evolution'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 export function Home() {
@@ -13,7 +12,7 @@ export function Home() {
         <HarnessDiagram />
         <h1>Under the Harness</h1>
         <p>A semester project on how AI agents work.</p>
-        <a className="scroll-cue" href="#topics" aria-label="Scroll to topics">
+        <a className="scroll-cue" href="#evolution" aria-label="Scroll to the story">
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
             <path
               d="M6 9l6 6 6-6"
@@ -27,19 +26,16 @@ export function Home() {
         </a>
       </section>
 
-      <section id="topics" className="home-section">
-        <div className="section-head">
-          <h2>Topics</h2>
-          <Link className="cta" to="/topics">
-            View all
-          </Link>
-        </div>
-        {GROUPS.map((group) => (
-          <div key={group.id} className="phase">
-            <h3 className="phase-title">{group.title}</h3>
-            <TopicList topics={topicsIn(group.id)} />
-          </div>
-        ))}
+      <Evolution />
+
+      <section className="evo-end">
+        <h2>That's the whole family tree.</h2>
+        <p>
+          Every step added one layer around the same next-word predictor. Want to learn how each layer actually works?
+        </p>
+        <Link className="cta" to="/topics">
+          Explore the topics →
+        </Link>
       </section>
 
       <section className="home-section">
